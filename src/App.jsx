@@ -143,8 +143,8 @@ export default function App() {
         />
 
         <footer className="mt-6 border-t border-border/40 pt-3 text-center text-[10px] text-zinc-600">
-          Live data via Vercel /api/yahoo (Yahoo) + CNN Fear &amp; Greed · portfolio
-          auto-refresh 2m · Not investment advice
+          Live data via Vercel /api/market (Yahoo + CNN) · per-symbol proxy fallback ·
+          portfolio auto-refresh 2m · Not investment advice
         </footer>
       </main>
     </div>

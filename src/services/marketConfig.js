@@ -11,14 +11,14 @@ export const SYMBOL_CONFIG = {
   vix: { symbol: '^VIX', label: 'VIX', unit: 'pts', decimals: 2 },
 };
 
-/** Demo fallback when live Yahoo fetch fails (offline / rate limit). */
+/** Demo fallback when live Yahoo fetch fails (offline / rate limit). Updated 2026-05-22. */
 export const FALLBACK_QUOTES = {
-  wti: { price: 78.42, changePct: 0.38, label: 'WTI Crude Oil' },
-  usdkrw: { price: 1385.2, changePct: -0.12, label: 'USD/KRW' },
-  sp500: { price: 5892.14, changePct: 0.24, label: 'S&P 500' },
-  ndx: { price: 21456.8, changePct: 0.41, label: 'Nasdaq 100' },
-  soxx: { price: 248.6, changePct: 0.67, label: 'SOXX' },
-  soxl: { price: 42.18, changePct: 1.92, label: 'SOXL (3X)' },
-  ewy: { price: 68.34, changePct: -0.55, label: 'EWY' },
-  vix: { price: 14.2, changePct: -2.1, label: 'VIX' },
+  wti: { price: 98.16, changePct: -9.66, label: 'WTI Crude Oil' },
+  usdkrw: { price: 1516.61, changePct: 1.3, label: 'USD/KRW' },
+  sp500: { price: 7445.72, changePct: -0.74, label: 'S&P 500' },
+  ndx: { price: 29357.27, changePct: -0.75, label: 'Nasdaq 100' },
+  soxx: { price: 524.71, changePct: -1.0, label: 'SOXX' },
+  soxl: { price: 178.39, changePct: -4.19, label: 'SOXL (3X)' },
+  ewy: { price: 186.42, changePct: -2.15, label: 'EWY' },
+  vix: { price: 17.04, changePct: -4.38, label: 'VIX' },
 };
