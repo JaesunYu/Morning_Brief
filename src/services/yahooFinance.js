@@ -52,8 +52,15 @@ function parseYahooChart(payload, config) {
 }
 
 async function fetchFromUrl(url) {
-  const response = await fetch(url, { signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
+  const response = await fetch(url, {
+    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    headers: { Accept: 'application/json' },
+  });
   if (!response.ok) return null;
+
+  const contentType = response.headers.get('content-type') ?? '';
+  if (!contentType.includes('json')) return null;
+
   const json = await response.json();
   return json;
 }

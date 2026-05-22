@@ -122,8 +122,8 @@ export default function App() {
         </div>
 
         <footer className="mt-6 border-t border-border/40 pt-3 text-center text-[10px] text-zinc-600">
-          Client-side data via Yahoo Finance (Vercel API proxy + corsproxy.io fallback) · CNN F&G
-          or VIX/momentum model · Auto-refresh 2m · Not investment advice
+          Live data via Vercel /api/market (Yahoo + CNN) · per-symbol proxy fallback ·
+          Auto-refresh 2m · Not investment advice
         </footer>
       </main>
     </div>

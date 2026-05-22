@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { fetchFearGreed } from '../services/fearGreed.js';
-import { QUOTE_KEYS } from '../services/marketConfig.js';
-import { fetchAllQuotes } from '../services/yahooFinance.js';
+import { fetchMarketData } from '../services/marketApi.js';
 
 const INITIAL_STATE = {
   quotes: null,
@@ -22,8 +20,7 @@ export function useMarketData(refreshIntervalMs = 120_000) {
     }));
 
     try {
-      const quotes = await fetchAllQuotes(QUOTE_KEYS);
-      const fearGreed = await fetchFearGreed(quotes);
+      const { quotes, fearGreed } = await fetchMarketData();
 
       setState({
         quotes,

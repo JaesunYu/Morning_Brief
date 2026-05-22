@@ -65,8 +65,12 @@ async function fetchCnnLive() {
     try {
       const response = await fetch(url, {
         signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+        headers: { Accept: 'application/json' },
       });
       if (!response.ok) continue;
+
+      const contentType = response.headers.get('content-type') ?? '';
+      if (!contentType.includes('json')) continue;
 
       const json = await response.json();
       const parsed = parseCnnPayload(json);
