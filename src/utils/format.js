@@ -33,3 +33,25 @@ export function average(values) {
   if (!values.length) return 0;
   return values.reduce((sum, v) => sum + v, 0) / values.length;
 }
+
+export function formatKrw(value, options = {}) {
+  const { compact = false, signed = false } = options;
+  if (value == null || Number.isNaN(value)) return '—';
+
+  const prefix = signed && value > 0 ? '+' : '';
+  const abs = Math.abs(value);
+
+  if (compact && abs >= 100_000_000) {
+    return `${prefix}${(value / 100_000_000).toFixed(2)}억`;
+  }
+  if (compact && abs >= 10_000) {
+    return `${prefix}${(value / 10_000).toFixed(0)}만`;
+  }
+
+  return `${prefix}${Math.round(value).toLocaleString('ko-KR')}원`;
+}
+
+export function formatQuantity(value) {
+  if (value == null || Number.isNaN(value)) return '—';
+  return value.toLocaleString('ko-KR');
+}

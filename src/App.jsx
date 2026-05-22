@@ -1,9 +1,11 @@
 import FearGreedCard from './components/FearGreedCard.jsx';
 import Header from './components/Header.jsx';
 import KoreaLeadCard from './components/KoreaLeadCard.jsx';
+import PortfolioSection from './components/PortfolioSection.jsx';
 import QuoteCard from './components/QuoteCard.jsx';
 import SectionTitle from './components/SectionTitle.jsx';
 import { useMarketData } from './hooks/useMarketData.js';
+import { usePortfolioData } from './hooks/usePortfolioData.js';
 
 const STRIP_ITEMS = [
   { key: 'ewy', label: 'EWY Korea', highlight: true },
@@ -16,14 +18,24 @@ const STRIP_ITEMS = [
 
 export default function App() {
   const { quotes, fearGreed, loading, error, lastUpdated, refresh } = useMarketData();
+  const portfolio = usePortfolioData();
   const q = quotes ?? {};
+
+  const handleRefreshAll = () => {
+    refresh();
+    portfolio.refresh();
+  };
 
   return (
     <div className="min-h-screen bg-zinc-950">
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900/80 via-zinc-950 to-zinc-950" />
 
       <main className="relative mx-auto max-w-7xl px-3 py-4 sm:px-4 sm:py-6 lg:px-6">
-        <Header lastUpdated={lastUpdated} loading={loading} onRefresh={refresh} />
+        <Header
+          lastUpdated={lastUpdated}
+          loading={loading || portfolio.loading}
+          onRefresh={handleRefreshAll}
+        />
 
         {error && (
           <p className="mt-3 rounded-lg border border-loss/30 bg-loss/10 px-3 py-2 text-sm text-loss">
@@ -121,9 +133,18 @@ export default function App() {
           </div>
         </div>
 
+        <PortfolioSection
+          summary={portfolio.summary}
+          accounts={portfolio.accounts}
+          loading={portfolio.loading}
+          error={portfolio.error}
+          lastUpdated={portfolio.lastUpdated}
+          onRefresh={portfolio.refresh}
+        />
+
         <footer className="mt-6 border-t border-border/40 pt-3 text-center text-[10px] text-zinc-600">
-          Live data via Vercel /api/market (Yahoo + CNN) · per-symbol proxy fallback ·
-          Auto-refresh 2m · Not investment advice
+          Live data via Vercel /api/yahoo (Yahoo) + CNN Fear &amp; Greed · portfolio
+          auto-refresh 2m · Not investment advice
         </footer>
       </main>
     </div>
